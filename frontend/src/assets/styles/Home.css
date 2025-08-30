@@ -1,0 +1,277 @@
+/* SIDEBAR */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0; /* agora começa visível */
+  width: 250px;
+  height: 100vh;
+  background: #1f283b;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  overflow: hidden;
+  transform: translateX(0);
+  padding: 10px;
+}
+
+/* MAIN CONTAINER */
+.main {
+  /* border: 1px solid red; */
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* quando o sidebar está aberto */
+.main:not(.full) {
+  margin-right: 0;
+  width: calc(100% - 250px);
+}
+
+/* quando o sidebar está fechado */
+.main.full {
+  margin-left: 0;
+  width: 100%;
+}
+/* quando fechar, move para fora */
+.sidebar.hidden {
+  transform: translateX(-100%);
+  left: -250px;
+  width: 40px;
+}
+.sidebar .title {
+  /* border: 1px solid red; */
+  padding: 0 10px;
+  text-transform: uppercase;
+  color: #777;
+  letter-spacing: 1.2px;
+}
+.sidebar #logo {
+  /* border: 1px solid red; */
+  text-align: center;
+}
+.sidebar #logo img {
+  width: 80px;
+  height: 80px;
+}
+.sidebar .dropdown--main {
+  /* border: 1px solid red; */
+  margin: 0 2px;
+}
+.sidebar .side-items li a {
+  /* border: 1px solid red; */
+  font-weight: 550;
+  background: #11182e;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.line--gray {
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0px 0px 1px #ccc;
+  margin: 10px auto;
+  width: 150px;
+}
+.sidebar .side-items li {
+  /* border: 1px solid red; */
+  padding: 2px 10px;
+}
+.sidebar .side-items li a {
+  display: flex;
+  /* border: 1px solid red; */
+  padding: 7px 8px;
+  color: #777;
+  transition: all 0.5s ease-in-out;
+}
+
+.sidebar .side-items a:hover {
+  background: #11182e;
+  color: #fff;
+}
+.sidebar .side-items a span {
+  /* border: 1px solid red; */
+  display: flex;
+}
+.sidebar .side-items .icon {
+  /* border: 1px solid red; */
+  min-width: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+  padding: 0 10px;
+}
+.sidebar .side-items .dropdown--main {
+  /* border: 1px solid red; */
+  display: none;
+  animation: fade 0.3s ease-in-out;
+  transition: all 0.3 ease-in-out;
+  opacity: 0;
+}
+.sidebar .side-items .dropdown--main.show {
+  /* border: 1px solid red; */
+  display: block;
+  max-height: 100px;
+  animation: fade 0.3s ease-in-out;
+  transition: all 0.3 ease-in-out;
+  opacity: 1;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    display: none;
+  }
+  to {
+    opacity: 1;
+    display: block;
+  }
+}
+
+/* NAVBAR */
+
+.navBar {
+  /* border: 1px solid red; */
+  position: fixed;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  /* border-bottom: 0.1px solid #777; */
+  background: #282d41;
+  padding: 10px 20px;
+  height: 60px;
+}
+
+.navBar.full {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
+
+.navBar:not(.full) {
+  margin-right: 0;
+  width: 100%;
+}
+.navBar .content .inner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+
+.navBar .content .inner-content .bars button {
+  /* border: 1px solid red; */
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+.navBar .content .inner-content .bars  {
+  /* border: 1px solid red; */
+  width: 100%;
+
+}
+
+.navBar .content .inner-content .configs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+.navBar .content .inner-content .configs .icons {
+  /* border: 1px solid red;   */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBar .content .inner-content .configs .icons button {
+  /* border: 1px solid red; */
+  border: none;
+  padding: 5px;
+  background: none;
+  position: relative;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+}
+.navBar .content .inner-content .configs .icons button span {
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 15px;
+  left: 15px;
+  font-size: 7px;
+  position: absolute;
+}
+.navBar .content .inner-content .configs img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+.navBar .content .inner-content .configs .online {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  background-color: green;
+  top:40px;
+  right: 25px;
+}
+
+/* DROPDOWN */
+
+.dropDown {
+  /* border: 1px solid red; */
+  background: #11182e;
+  padding: 4px;
+  width: 130px;
+  position: absolute;
+  right: 24px;
+  top: 54px;
+  box-shadow: 0px 0px 3px #ccc;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+  animation: 0.3s fade ease-in-out;
+}
+.dropDown ul li {
+  color: #fff;
+  /* border: 1px solid red; */
+  padding: 5px;
+  margin: 5px 0;
+  transition: 0.5 all ease-in-out;
+}
+.dropDown ul li .button {
+  font-size: 13px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.dropDown ul li a,
+.dropDown ul li .button {
+  color: #777;
+}
+
+.dropDown ul li:hover {
+  background: #fff;
+  color: #11182e;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,119 @@
+.content-form {
+  /* border: 1px solid red; */
+  background: #282d41;
+  border-radius: 4px;
+  /* height: 300px; */
+  padding: 10px;
+}
+
+.content-form .container-tab .head-tab {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  /* border-bottom: 2px solid #4b4b89; */
+}
+.content-form .container-tab .head-tab button {
+  background: none;
+  border: none;
+  margin: 0 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #ccc;
+  /* border-bottom: 3px solid purple; */
+}
+.content-form .container-tab .head-tab button.active {
+  border-bottom: 2px solid purple;
+  font-weight: 600;
+  animation: fade 0.3s ease-in-out;
+  transition: all 0.3 ease-in-out;
+}
+.content-form .container-tab .body-tab div {
+  /* border: 1px solid red; */
+  margin: 0 2px;
+}
+.content-form .container-tab .body-tab div.active {
+  animation: fade 0.3s ease-in-out;
+  transition: all 0.3 ease-in-out;
+}
+.content-form .container-tab .body-tab .input-box {
+  /* border: 1px solid red; */
+  display: flex;
+  margin: 10px 0;
+}
+.content-form .container-tab .body-tab .input-box .input-field span {
+  /* border: 1px solid red; */
+  color: #ccc;
+  font-size: 11px;
+}
+.content-form .container-tab .body-tab .input-box .input-field {
+  /* border: 1px solid red; */
+  display: grid;
+  align-items: center;
+  width: 260px;
+}
+.content-form .container-tab .body-tab .input-box .input-field .description {
+  /* border: 1px solid red; */
+  width: 790px;
+  height: 100px;
+}
+.content-form .container-tab .body-tab .input-box .input-field .obs {
+  /* border: 1px solid red; */
+  width: 400px;
+  height: 100px;
+}
+.content-form .container-tab .body-tab .input-box .input-field input,
+select {
+  height: 30px;
+  border: 1px solid #ccc;
+  background: #213547;
+  border-radius: 3px;
+  padding-left: 5px;
+  outline: none;
+}
+.content-form
+  .container-tab
+  .body-tab
+  .input-box
+  .input-field
+  input::placeholder,
+.description::placeholder {
+  color: #ccc;
+}
+.upload {
+  border: 1px solid #ccc;
+  width: 400px;
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.upload .icon-upload {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.btns button {
+  border: 1px solid #698f66;
+  color: #698f66;
+  padding: 10px 25px;
+  font-size: 11px;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.btns button:hover {
+  border: 1px solid #fff;
+  color: #fff;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    display: none;
+  }
+  to {
+    opacity: 1;
+    display: block;
+  }
+}

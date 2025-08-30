@@ -1,0 +1,143 @@
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Main normal (quando sidebar está aberta) */
+.menu {
+  flex: 1;
+  height: 100%;
+  /* border: 1px solid red; */
+  margin: 70px 0;
+  padding: 0 20px;
+  overflow-y: auto;
+  margin-left: 250px; /* espaço da sidebar */
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* menu em tela cheia (quando sidebar fecha) */
+.menu.full {
+  margin-left: 0;
+}
+
+.content .inner-content-card {
+  /* border: 1px solid red; */
+  display: grid;
+  /* height: 200px; */
+  gap: 10px;
+}
+.content .inner-content-card .card-fly-greeting {
+  /* border: 1px solid red; */
+  border: 2px solid #4b4b89;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+  padding: 10px;
+
+}
+.content .inner-content-card .card-fly-greeting .greeting h3 {
+  /* border: 1px solid red; */
+  color: #4e4e8f;
+  font-weight: 400;
+}
+.content .inner-content-card .card-fly-greeting .greeting p {
+  /* border: 1px solid red; */
+  color: #ccc;
+}
+.content .inner-content-card .card-fly-greeting .greeting p span {
+  /* border: 1px solid red; */
+  color: #535bf2;
+}
+
+.content .inner-content-card .card-fly-greeting div .profile {
+  /* border: 1px solid red; */
+  margin: 20px 0;
+}
+.content .inner-content-card .card-fly-greeting div .profile a{
+  border: 1px solid #698F66;
+  padding: 5px 15px;
+  font-size: 11px;
+  border-radius: 4px;
+  color: #698F66;
+  transition: all 0.3s ease-in-out;
+}
+.content .inner-content-card .card-fly-greeting div .profile a:hover{
+  background: #698F66;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.content .inner-content-card .card-fly-greeting .image img {
+  /* border: 1px solid red; */
+  width: 100px;
+  height: 100px;
+  margin: 0 70px;
+  padding: 0;
+}
+.content .inner-content-card .cards {
+  /* border: 1px solid red; */
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+.content .inner-content-card .cards .card:nth-child(1) .icon {
+  /* border: 1px solid red; */
+  font-size: 18px;
+  color: #698F66;
+}
+.content .inner-content-card .cards .card:nth-child(2) .icon {
+  /* border: 1px solid red; */
+  font-size: 18px;
+  color: #4b4b89;
+}
+.content .inner-content-card .cards .card:nth-child(3) .icon{
+  /* border: 1px solid red; */
+  font-size: 18px;
+  color: purple;
+}
+.content .inner-content-card .cards .card:nth-child(4) .icon {
+  /* border: 1px solid red; */
+  font-size: 18px;
+  color: orangered;
+}
+.content .inner-content-card .cards .card:nth-child(1){
+  border: 1px solid #698F66;
+  padding: 20px 15px;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .inner-content-card .cards .card:nth-child(2){
+  border: 1px solid #4b4b89;
+  padding: 20px 15px;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .inner-content-card .cards .card:nth-child(3){
+  border: 1px solid purple;
+  padding: 20px 15px;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .inner-content-card .cards .card:nth-child(4){
+  border: 1px solid orangered;
+  padding: 20px 15px;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,210 @@
+:root {
+  font-family: "poppins", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1f283b;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  background-color: #1f283b;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+.box-container {
+  /* border: 1px solid red; */
+  display: flex;
+}
+.box-container .background {
+  /* border: 1px solid red; */
+  width: 100%;
+  background: #674ea7;
+}
+.box-container .background div {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-container .left-content {
+  /* border: 1px solid red; */
+  width: 100%;
+}
+.container {
+  /* border: 1px solid red; */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .inner-content .Tab-buttons {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .inner-content .Tab-buttons button {
+  /* border: 1px solid red; */
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-bottom: 3px solid #674ea7;
+  color: #fff;
+  /* padding: 20px; */
+}
+.container .inner-content .Tab-content {
+  /* border: 1px solid red; */
+  transition: all 0.3s ease-in-out;
+  animation: 0.5s fade ease-in-out;
+}
+.container .inner-content .Tab-buttons button.active {
+  background: #674ea7;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+}
+.container .inner-content {
+  border-bottom: 1px solid #777;
+  border-radius: 4px;
+  width: 300px;
+}
+.container .inner-content h2 {
+  text-align: center;
+  padding: 5px;
+  color: #535bf2;
+  font-weight: 400;
+}
+.container .inner-content h2 span {
+  text-align: center;
+  color: #ccc;
+}
+.container .inner-content form {
+  /* border: 1px solid red; */
+  padding: 20px;
+}
+.container .inner-content form .input-box .input-field {
+  /* border: 1px solid red; */
+  display: grid;
+  flex-direction: column;
+  padding: 10px;
+}
+.container .inner-content form .input-box .input-field span {
+  /* border: 1px solid red; */
+  color: #fff;
+}
+.container .inner-content form .input-box .field-gender {
+  /* border: 1px solid red; */
+  display: grid;
+  flex-direction: column;
+  padding: 10px;
+}
+.container .inner-content form .input-box .input-field input,
+select {
+  height: 30px;
+  border: 1px solid #ccc;
+  background: #213547;
+  border-radius: 3px;
+  padding-left: 5px;
+  transition: all 0.3s ease-in-out;
+  animation: 0.5s fade ease-in-out;
+  outline: none;
+}
+.container .inner-content form .input-box .input-field input::placeholder {
+  color: #ccc;
+}
+.container .inner-content form .input-box .btns {
+  /* border: 1px solid red; */
+  padding: 0 10px;
+  display: grid;
+  flex-direction: column;
+}
+.container .inner-content form .input-box .btns .button {
+  /* border: 1px solid red; */
+  margin: 0 0 5px 0;
+}
+.container .inner-content form .input-box .btns .button button {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  background: #242424;
+  color: #fff;
+}
+.container .inner-content form .input-box .btns .button button .icon {
+  /* border: 1px solid red; */
+  margin: 1px 5px;
+}
+.button {
+  /* border: 1px solid red; */
+  width: 100%;
+}
+.button button {
+  /* border: 1px solid red; */
+  padding: 10px 25px;
+  border: 1px solid #777;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #242424;
+  transition: border-color 0.25s;
+}
+.button button:hover {
+  border-color: #674ea7;
+}
+.button button:focus,
+.button button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+p {
+  /* border: 1px solid red; */
+  margin: 5px 0;
+  font-size: 11px;
+  color: #ccc;
+}
+@keyframes fade {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}

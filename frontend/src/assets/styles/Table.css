@@ -1,0 +1,29 @@
+.data-table {
+  /* border: 1px solid red; */
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 4px;
+  background: #282d41;
+}
+
+.data-table .container-table {
+  padding: 10px;
+}
+.data-table .container-table table {
+  /* border: 1px solid red; */
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table .container-table table tr th {
+  /* border: 1px solid red; */
+  padding: 0 2px ;
+  font-weight: 400;
+  color: #ccc;
+  text-align: left;
+  border-left: none;
+}
+.data-table .container-table table tr td {
+  border-left: none;
+  text-align: left;
+  padding: 6px;
+}
