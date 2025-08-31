@@ -36,7 +36,7 @@ const Table = ({ headers, data, icon, handleClick }) => {
                     {icon}
                   </Link>
                 ) : (
-                  <Button handleClick={handleClick()} key={id}>
+                  <Button handleClick={()=>handleClick(item._id)} key={id}>
                     {icon}
                   </Button>
                 )

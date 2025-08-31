@@ -49,6 +49,7 @@ button {
 .data-table .container-table table tr td button {
   background: none;
   border: none;
+  outline: none;
   cursor: pointer;
   color: red;
 }

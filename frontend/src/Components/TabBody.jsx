@@ -7,13 +7,19 @@ import Select from "./Select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowUp, faSave } from "@fortawesome/free-solid-svg-icons";
 
+const TODAY = new Date();
+const NOW = TODAY.toISOString().split("T")[0];
+
 const TabBody = ({ active, handleChange, category, status, priority }) => {
-  const begin = Number(useRef());
-  const end = Number(useRef());
-  const days =
-    end.current?.value?.split("-")[2] > begin.current?.value?.split("-")[2]
-      ? end.current?.value?.split("-")[2] - begin.current?.value?.split("-")[2]
-      : begin.current?.value?.split("-")[2] - end.current?.value?.split("-")[2];
+  const end = useRef();
+  let diffDays;
+  if (end.current?.value) {
+    const endDate = new Date(end.current?.value);
+    if (!isNaN(endDate)) {
+      const diff = endDate - TODAY; // diferença em ms
+      diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    }
+  }
 
   return (
     <div className="body-tab">
@@ -69,7 +75,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
               <Input
                 type="date"
                 name="begin"
-                reference={begin}
+                valueInput={NOW}
                 handleChange={handleChange}
               />
             </Field>
@@ -87,7 +93,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
               <Input
                 type="number"
                 name="days"
-                valueInput={days.toString()}
+                valueInput={diffDays ?? ""}
                 handleChange={handleChange}
               />
             </Field>

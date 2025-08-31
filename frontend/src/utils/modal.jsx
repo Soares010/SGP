@@ -2,17 +2,19 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import "../assets/styles/Modal.css";
 
-export function Modal() {
+export function Modal({ onConfirm }) {
   const confirm = {
     message: "Tem certeza que deseja apagar?",
     buttons: [
       {
         label: "Sim",
-        onClick: () => alert("Click Yes"),
+        onClick: () => {
+          if (onConfirm) onConfirm();
+        },
       },
       {
         label: "Não",
-        onClick: () => alert("Click No"),
+        onClick: () => console.log("canceled"),
       },
     ],
     closeOnEscape: true,

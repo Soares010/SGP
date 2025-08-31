@@ -25,42 +25,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const headers = [
-  {
-    key: "title",
-    name: "Nome do projecto",
-  },
-  {
-    key: "category",
-    name: "Categoria",
-  },
-  {
-    key: "status",
-    name: "Status",
-  },
-  {
-    key: "begin",
-    name: "Criado em",
-  },
-  {
-    key: "end",
-    name: "Provável término",
-  },
-  {
-    key: "days",
-    name: "Duração",
-  },
-  {
-    key: "budget",
-    name: "Orçamento",
-  },
-  {
-    key: "cost",
-    name: "Custo",
-  },
-  {
-    key: "priority",
-    name: "Prioridade",
-  },
+  { key: "title", name: "Nome do projecto" },
+  { key: "category", name: "Categoria" },
+  { key: "status", name: "Status" },
+  { key: "begin", name: "Criado em" },
+  { key: "end", name: "Provável término" },
+  { key: "days", name: "Duração" },
+  { key: "budget", name: "Orçamento" },
+  { key: "cost", name: "Custo" },
+  { key: "priority", name: "Prioridade" },
 ];
 const icons = [
   {
@@ -69,17 +42,8 @@ const icons = [
     type: "link",
     to: "/edit",
   },
-  {
-    id: 2,
-    icon: <FontAwesomeIcon icon={faTrash} />,
-    type: "button",
-  },
-  {
-    id: 3,
-    icon: <FontAwesomeIcon icon={faEye} />,
-    type: "link",
-    to: "/see",
-  },
+  { id: 2, icon: <FontAwesomeIcon icon={faTrash} />, type: "button" },
+  { id: 3, icon: <FontAwesomeIcon icon={faEye} />, type: "link", to: "/see" },
   {
     id: 4,
     icon: <FontAwesomeIcon icon={faPlus} />,
@@ -126,6 +90,20 @@ const Project = () => {
       }
     } catch (error) {
       console.log(`Sem projectos ${error}`);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      const response = await api.get(`/deleteprojects/${id}`);
+      if (response.status === 200) {
+        handleGetProjects();
+        setSuccess(response.data.message);
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      setError(error.response?.data?.message);
     }
   }
 
@@ -211,7 +189,9 @@ const Project = () => {
                 headers={headers}
                 icon={icons}
                 data={data}
-                handleClick={() => Modal}
+                handleClick={(id) =>
+                  Modal({ onConfirm: () => handleDelete(id) })
+                }
               />
             </div>
           </Container>
