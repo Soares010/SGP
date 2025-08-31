@@ -8,11 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileArrowUp, faSave } from "@fortawesome/free-solid-svg-icons";
 
 const TabBody = ({ active, handleChange, category, status, priority }) => {
-  const begin = useRef();
-  const end = useRef();
+  const begin = Number(useRef());
+  const end = Number(useRef());
   const days =
-    Number(end.current?.value?.split("-")[2]) -
-    Number(begin.current?.value?.split("-")[2]);
+    end.current?.value?.split("-")[2] > begin.current?.value?.split("-")[2]
+      ? end.current?.value?.split("-")[2] - begin.current?.value?.split("-")[2]
+      : begin.current?.value?.split("-")[2] - end.current?.value?.split("-")[2];
 
   return (
     <div className="body-tab">

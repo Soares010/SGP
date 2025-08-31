@@ -12,6 +12,7 @@ import { check } from "../../utils/checkAuth";
 import SideBar from "../../Components/SideBar";
 import TabBody from "../../Components/TabBody";
 import { getOptions } from "../../utils/options";
+import { Modal } from "../../utils/modal";
 import { getTabs } from "../../utils/tabs";
 import TabHeader from "../../Components/TabHeader";
 import Container from "../../Components/Container";
@@ -58,37 +59,37 @@ const headers = [
   },
   {
     key: "priority",
-    name: "Nível de prioridade",
+    name: "Prioridade",
   },
 ];
-
 const icons = [
   {
     id: 1,
     icon: <FontAwesomeIcon icon={faFileEdit} />,
+    type: "link",
     to: "/edit",
   },
   {
     id: 2,
     icon: <FontAwesomeIcon icon={faTrash} />,
-    to: "/delete",
+    type: "button",
   },
   {
     id: 3,
     icon: <FontAwesomeIcon icon={faEye} />,
+    type: "link",
     to: "/see",
   },
   {
     id: 4,
     icon: <FontAwesomeIcon icon={faPlus} />,
+    type: "link",
     to: "/addFriend",
   },
 ];
 const tabs = getTabs();
 const options = getOptions();
 const [{ status }, { priority }, { category }] = options;
-const getToken = JSON.parse(localStorage.getItem("dataWithTokenAuth"));
-const TOKEN = getToken?.token;
 
 const Project = () => {
   const { redirect, user } = check();
@@ -99,25 +100,6 @@ const Project = () => {
   const [active, setTabActive] = useState("Tab-1");
   const [sideBarToggle, setSideBarToggle] = useState(false);
   if (redirect) return redirect;
-
-  useEffect(() => {
-    async function handleGetProjects() {
-      try {
-        const response = await api.get("/projects", {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        });
-
-        if (response.status === 200) {
-          setData(response.data);
-        }
-      } catch (error) {
-        console.log(`Sem projectos ${error}`);
-      }
-    }
-    handleGetProjects();
-  }, []);
 
   useEffect(() => {
     notify({
@@ -132,32 +114,40 @@ const Project = () => {
     });
   }, [success, error]);
 
+  useEffect(() => {
+    handleGetProjects();
+  }, []);
+  async function handleGetProjects() {
+    try {
+      const response = await api.get("/projects");
+
+      if (response.status === 200) {
+        setData(response.data);
+      }
+    } catch (error) {
+      console.log(`Sem projectos ${error}`);
+    }
+  }
+
   async function addProject() {
     try {
-      const response = await api.post(
-        "/addProject",
-        {
-          title: project.title,
-          category: project.category,
-          status: project.status,
-          description: project.description,
-          begin: project.begin,
-          end: project.end,
-          days: project.days,
-          budget: project.budget,
-          cost: project.cost,
-          priority: project.priority,
-          document: project.document,
-          observation: project.observation,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-          },
-        }
-      );
+      const response = await api.post("/addProject", {
+        title: project.title,
+        category: project.category,
+        status: project.status,
+        description: project.description,
+        begin: project.begin,
+        end: project.end,
+        days: project.days,
+        budget: project.budget,
+        cost: project.cost,
+        priority: project.priority,
+        document: project.document,
+        observation: project.observation,
+      });
 
       if (response.status === 201) {
+        await handleGetProjects();
         setSuccess(response.data.message);
       } else {
         setError(response.data.message);
@@ -183,6 +173,7 @@ const Project = () => {
       return;
     }
     addProject();
+    console.log("enviou");
   }
 
   function handleChange(e) {
@@ -216,7 +207,12 @@ const Project = () => {
           </Container>
           <Container className="data-table">
             <div className="container-table">
-              <Table headers={headers} icon={icons} data={data} />
+              <Table
+                headers={headers}
+                icon={icons}
+                data={data}
+                handleClick={() => Modal}
+              />
             </div>
           </Container>
         </main>

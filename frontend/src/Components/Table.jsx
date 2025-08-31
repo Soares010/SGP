@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
-const Table = ({ headers, data, icon }) => {
+const Table = ({ headers, data, icon, handleClick }) => {
   const formatedNumber = new Intl.NumberFormat("pt-ao", {
     style: "currency",
     currency: "AOA",
@@ -21,18 +22,25 @@ const Table = ({ headers, data, icon }) => {
           <tr key={item._id}>
             {headers.map(({ key }) => (
               <td key={`${item._id}-${key}`}>
-                {key === "days" && `${item[key]} dias`}
-                {key === "cost" || key === "budget"
+                {key === "days"
+                  ? `${item[key]} ${item[key] > 1 ? "dias" : "dia"}`
+                  : key === "cost" || key === "budget"
                   ? formatedNumber.format(item[key])
-                  : key !== "days" && item[key]}
+                  : item[key]}
               </td>
             ))}
             <td>
-              {icon.map(({ id, icon, to }) => (
-                <Link to={to} state={{ id: item._id }} key={id}>
-                  {icon}
-                </Link>
-              ))}
+              {icon.map(({ id, icon, type, to }) =>
+                type === "link" ? (
+                  <Link to={to} state={{ id: item._id }} key={id}>
+                    {icon}
+                  </Link>
+                ) : (
+                  <Button handleClick={handleClick()} key={id}>
+                    {icon}
+                  </Button>
+                )
+              )}
             </td>
           </tr>
         ))}

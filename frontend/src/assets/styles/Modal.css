@@ -1,0 +1,70 @@
+.custom-overlay {
+  /* border: 1px solid red; */
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.react-confirm-alert .react-confirm-alert-body {
+  /* border: 1px solid red; */
+  height: 160px;
+  width: 250px;
+  background: #282d41;
+  font-size: 16px !important;
+  border-radius: 4px;
+  color: #ddd !important;
+  text-align: center;
+}
+
+.react-confirm-alert
+  .react-confirm-alert-body
+  .react-confirm-alert-button-group {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.react-confirm-alert
+  .react-confirm-alert-body
+  .react-confirm-alert-button-group
+  button {
+  /* border: 1px solid red; */
+  width: 100%;
+  padding: 5px 20px;
+  background: #282d41;
+  border: 1px solid #698f66;
+  color: #698f66;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.react-confirm-alert
+  .react-confirm-alert-body
+  .react-confirm-alert-button-group
+  button:hover {
+  /* border: 1px solid red; */
+  border: 1px solid #ccc;
+  color: #ccc;
+}
+/* Animação de fade */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Container principal */
+.react-confirm-alert-body {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Quando vai fechar, adiciona esta classe */
+.react-confirm-alert-body.closing {
+  animation: fadeOut 0.3s forwards;
+}

@@ -21,7 +21,7 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  days: String,
+  days: Number,
   budget: {
     type: String,
     required: true,
