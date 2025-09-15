@@ -84,6 +84,7 @@ const Project = () => {
   async function handleGetProjects() {
     try {
       const response = await api.get("/projects");
+      console.log(response);
 
       if (response.status === 200) {
         setData(response.data);
@@ -151,7 +152,6 @@ const Project = () => {
       return;
     }
     addProject();
-    console.log("enviou");
   }
 
   function handleChange(e) {
@@ -179,6 +179,8 @@ const Project = () => {
                   status={status}
                   active={active}
                   priority={priority}
+                  textButton={"Criar Proejcto"}
+                  project={project}
                 />
               </Form>
             </div>

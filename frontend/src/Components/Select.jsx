@@ -1,8 +1,8 @@
 import React from "react";
 
-const Select = ({ name, options = [], text, handleChange }) => {
+const Select = ({ name, options = [], text, handleChange, value }) => {
   return (
-    <select name={name} onChange={(e) => handleChange(e)}>
+    <select name={name} onChange={(e) => handleChange(e)} value={value ?? ""}>
       <option value="">{text}</option>
       {options.map(({ id, value }) => (
         <option key={id} value={value}>

@@ -12,7 +12,8 @@ const Home = () => {
   if (redirect) return redirect;
 
   const [sideBarToggle, setSideBarToggle] = useState(false);
-  
+
+
   return (
     <div>
       <SideBar isOpenSidebar={sideBarToggle} />

@@ -41,9 +41,22 @@ exports.CreateProject = async (req, res) => {
 exports.getProjects = async (req, res) => {
   try {
     const projects = await Project.find({});
-    res.status(200).json(projects);
+    return res.status(200).json(projects);
   } catch (error) {
-    res.status(500).json({ message: "Erro ao buscar projectos!" });
+    return res.status(500).json({ message: "Erro ao buscar projectos!" });
+  }
+};
+
+exports.getProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const project = await Project.findById(id);
+    if (!project) {
+      return res.status(404).json({ message: "Sem dados para editar!" });
+    }
+    return res.status(200).json(project);
+  } catch (error) {
+    return res.status(500).json({ message: "Erro ao realizar requisição!" });
   }
 };
 

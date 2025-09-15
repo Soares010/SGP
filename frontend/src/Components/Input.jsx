@@ -14,7 +14,7 @@ const Input = ({
     <input
       id={id}
       hidden={hidden}
-      value={valueInput}
+      value={valueInput ?? ""}
       type={type}
       name={name}
       ref={reference}

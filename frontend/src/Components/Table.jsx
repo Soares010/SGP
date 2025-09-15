@@ -32,11 +32,15 @@ const Table = ({ headers, data, icon, handleClick }) => {
             <td>
               {icon.map(({ id, icon, type, to }) =>
                 type === "link" ? (
-                  <Link to={to} state={{ id: item._id }} key={id}>
+                  <Link
+                    to={`${to}/${item._id}`}
+                    state={{ id: item._id }}
+                    key={id}
+                  >
                     {icon}
                   </Link>
                 ) : (
-                  <Button handleClick={()=>handleClick(item._id)} key={id}>
+                  <Button handleClick={() => handleClick(item._id)} key={id}>
                     {icon}
                   </Button>
                 )

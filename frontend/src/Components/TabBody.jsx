@@ -10,7 +10,15 @@ import { faFileArrowUp, faSave } from "@fortawesome/free-solid-svg-icons";
 const TODAY = new Date();
 const NOW = TODAY.toISOString().split("T")[0];
 
-const TabBody = ({ active, handleChange, category, status, priority }) => {
+const TabBody = ({
+  active,
+  handleChange,
+  category,
+  status,
+  priority,
+  textButton,
+  project,
+}) => {
   const end = useRef();
   let diffDays;
   if (end.current?.value) {
@@ -33,6 +41,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 placeholder="Insira o nome do projecto"
                 name="title"
                 handleChange={handleChange}
+                valueInput={project.title}
               />
             </Field>
             <Field className="input-field">
@@ -42,6 +51,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 text={"--- Selecione a categoria ---"}
                 options={category}
                 handleChange={handleChange}
+                value={project.category}
               />
             </Field>
             <Field className="input-field">
@@ -51,6 +61,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 text={"--- Selecione o Status ---"}
                 options={status}
                 handleChange={handleChange}
+                value={project.status}
               />
             </Field>
           </Box>
@@ -62,6 +73,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 className="description"
                 placeholder={"Escreva alguma coisa sobre o projecto!"}
                 handleChange={handleChange}
+                valueInput={project.description}
               />
             </Field>
           </Box>
@@ -85,6 +97,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 type="date"
                 name="end"
                 reference={end}
+                valueInput={project.end}
                 handleChange={handleChange}
               />
             </Field>
@@ -109,6 +122,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 type="number"
                 name="budget"
                 placeholder={" KZ"}
+                valueInput={project.budget}
                 handleChange={handleChange}
               />
             </Field>
@@ -118,6 +132,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 type="number"
                 name="cost"
                 placeholder={" KZ"}
+                valueInput={project.cost}
                 handleChange={handleChange}
               />
             </Field>
@@ -127,6 +142,7 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 name="priority"
                 text={"--- Selecione a Prioridade ---"}
                 options={priority}
+                valueInput={project.priority}
                 handleChange={handleChange}
               />
             </Field>
@@ -163,12 +179,13 @@ const TabBody = ({ active, handleChange, category, status, priority }) => {
                 placeholder="Escreva algumas observações"
                 className="obs"
                 handleChange={handleChange}
+                valueInput={project.observation}
               />
             </Field>
           </Box>
           <div className="btns">
             <button>
-              Criar Proejcto <FontAwesomeIcon icon={faSave} />
+              {textButton} <FontAwesomeIcon icon={faSave} />
             </button>
           </div>
         </div>
