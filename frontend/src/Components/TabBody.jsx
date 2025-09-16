@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Box from "./Box";
 import Field from "./Field";
 import Input from "./Input";
@@ -20,15 +20,19 @@ const TabBody = ({
   project,
 }) => {
   const end = useRef();
-  let diffDays;
-  if (end.current?.value) {
-    const endDate = new Date(end.current?.value);
-    if (!isNaN(endDate)) {
-      const diff = endDate - TODAY; // diferença em ms
-      diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  const [days, setDays] = useState(0);
+  // ✅ recalcula quando o valor de "project.end" mudar
+  useEffect(() => {
+    if (project.end) {
+      const endDate = new Date(project.end);
+      if (!isNaN(endDate)) {
+        const diff = endDate - TODAY;
+        setDays(Math.ceil(diff / (1000 * 60 * 60 * 24)));
+      }
+    } else {
+      setDays(0);
     }
-  }
-
+  }, [project.end]);
   return (
     <div className="body-tab">
       {active === "Tab-1" && (
@@ -73,7 +77,7 @@ const TabBody = ({
                 className="description"
                 placeholder={"Escreva alguma coisa sobre o projecto!"}
                 handleChange={handleChange}
-                valueInput={project.description}
+                value={project.description}
               />
             </Field>
           </Box>
@@ -106,7 +110,7 @@ const TabBody = ({
               <Input
                 type="number"
                 name="days"
-                valueInput={diffDays ?? ""}
+                valueInput={days ?? 0}
                 handleChange={handleChange}
               />
             </Field>
@@ -142,7 +146,7 @@ const TabBody = ({
                 name="priority"
                 text={"--- Selecione a Prioridade ---"}
                 options={priority}
-                valueInput={project.priority}
+                value={project.priority}
                 handleChange={handleChange}
               />
             </Field>
@@ -179,7 +183,7 @@ const TabBody = ({
                 placeholder="Escreva algumas observações"
                 className="obs"
                 handleChange={handleChange}
-                valueInput={project.observation}
+                value={project.observation}
               />
             </Field>
           </Box>

@@ -54,12 +54,25 @@ const icons = [
 const tabs = getTabs();
 const options = getOptions();
 const [{ status }, { priority }, { category }] = options;
-
+const NOW = new Date().toISOString().split("T")[0];
 const Project = () => {
   const { redirect, user } = check();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [project, setProject] = useState({});
+  const [project, setProject] = useState({
+    title: "",
+    description: "",
+    status: "",
+    category: "",
+    begin: NOW,
+    end: "",
+    days: 0,
+    budget: "",
+    cost: "",
+    priority: "",
+    document: "",
+    observation: "",
+  });
   const [data, setData] = useState([]);
   const [active, setTabActive] = useState("Tab-1");
   const [sideBarToggle, setSideBarToggle] = useState(false);
@@ -84,7 +97,6 @@ const Project = () => {
   async function handleGetProjects() {
     try {
       const response = await api.get("/projects");
-      console.log(response);
 
       if (response.status === 200) {
         setData(response.data);

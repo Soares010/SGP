@@ -19,6 +19,7 @@ const Edit = () => {
   const { id } = useParams();
   const options = getOptions();
   const [error, setError] = useState("");
+  const [project, setProject] = useState({});
   const [success, setSuccess] = useState("");
   const [active, setTabActive] = useState("Tab-1");
   const [{ status }, { priority }, { category }] = options;
@@ -29,13 +30,13 @@ const Edit = () => {
   async function handleGetProject() {
     try {
       const response = await api.get(`/project/${id}`);
-      console.log(response);
+      setProject(response.data)
     } catch (error) {
       console.log(`Sem projectos ${error}`);
     }
   }
   useEffect(() => {
-    // handleGetProject();
+    handleGetProject();
   }, [id]);
 
   useEffect(() => {
