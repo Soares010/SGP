@@ -202,6 +202,7 @@ function Login() {
                             placeholder="Exemplo@gmail.com"
                             name="email"
                             handleChange={onGetInputData}
+                            valueInput={state.email}
                           />
                         </Field>
                         <Field className="input-field">
@@ -211,6 +212,7 @@ function Login() {
                             placeholder="******"
                             name="password"
                             handleChange={onGetInputData}
+                            valueInput={state.password}
                           />
                         </Field>
                         <div className="btns">

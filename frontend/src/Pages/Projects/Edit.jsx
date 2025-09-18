@@ -14,7 +14,8 @@ import { useParams } from "react-router-dom";
 import { getOptions } from "../../utils/options";
 import notify from "../../utils/notify";
 
-const tabs = getTabs();
+const allTabs = getTabs();
+const tabs = allTabs.filter((tab) => tab.id !== "Tab-4");
 const Edit = () => {
   const { id } = useParams();
   const options = getOptions();
@@ -30,7 +31,7 @@ const Edit = () => {
   async function handleGetProject() {
     try {
       const response = await api.get(`/project/${id}`);
-      setProject(response.data)
+      setProject(response.data);
     } catch (error) {
       console.log(`Sem projectos ${error}`);
     }
@@ -80,7 +81,8 @@ const Edit = () => {
                   category={category}
                   status={status}
                   project={project}
-                  textButton={"Actualizar ProjEcto"}
+                  setProject={setProject}
+                  textButton={"Actualizar Projecto"}
                 />
               </Form>
             </div>

@@ -193,6 +193,7 @@ const Project = () => {
                   priority={priority}
                   textButton={"Criar Proejcto"}
                   project={project}
+                  setProject={setProject}
                 />
               </Form>
             </div>

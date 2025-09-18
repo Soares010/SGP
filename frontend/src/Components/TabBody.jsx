@@ -18,10 +18,11 @@ const TabBody = ({
   priority,
   textButton,
   project,
+  setProject,
 }) => {
   const end = useRef();
   const [days, setDays] = useState(0);
-  // ✅ recalcula quando o valor de "project.end" mudar
+  // recalcula quando o valor de "project.end" mudar
   useEffect(() => {
     if (project.end) {
       const endDate = new Date(project.end);
@@ -33,6 +34,13 @@ const TabBody = ({
       setDays(0);
     }
   }, [project.end]);
+
+  // Actualizar dias no campo days
+  // Usando o setProject passado por prop
+  useEffect(() => {
+    setProject((prev) => ({ ...prev, days }));
+  }, [days, setProject]);
+
   return (
     <div className="body-tab">
       {active === "Tab-1" && (
@@ -187,13 +195,18 @@ const TabBody = ({
               />
             </Field>
           </Box>
-          <div className="btns">
+          {/* <div className="btns">
             <button>
               {textButton} <FontAwesomeIcon icon={faSave} />
             </button>
-          </div>
+          </div> */}
         </div>
       )}
+      <div className="btns">
+        <button>
+          {textButton} <FontAwesomeIcon icon={faSave} />
+        </button>
+      </div>
     </div>
   );
 };
