@@ -30,7 +30,9 @@ exports.CreateProject = async (req, res) => {
     });
     await project.save();
 
-    return res.status(201).json({ message: "Projecto salvo com sucesso!" });
+    return res
+      .status(201)
+      .json({ message: "Projecto salvo com sucesso!", project });
   } catch (error) {
     return res
       .status(500)
@@ -56,6 +58,9 @@ exports.getProject = async (req, res) => {
     }
     return res.status(200).json(project);
   } catch (error) {
+    if (error.name === "CastError") {
+      return res.status(400).json({ message: "ID inválido!" });
+    }
     return res.status(500).json({ message: "Erro ao realizar requisição!" });
   }
 };
@@ -68,13 +73,36 @@ exports.deleteProjects = async (req, res) => {
 
     if (!project) {
       return res
-        .status(300)
+        .status(400)
         .json({ message: `Falha ao tentar apagar projecto!` });
     }
     return res.status(200).json({ message: `Projecto apagado com sucess!` });
   } catch (error) {
+    if (error.name === "CastError") {
+      return res.status(400).json({ message: "ID inválido!" });
+    }
     return res
       .status(500)
       .json({ message: `Falha ao completar requisição! ${error}` });
+  }
+};
+exports.editProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const project = await Project.findByIdAndUpdate(
+      id,
+      { $set: req.body },
+      { new: true }
+    );
+
+    if (!project) {
+      return res.status(404).json({ message: "Projecto não encontrado!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Projecto editado com sucesso!", project });
+  } catch (error) {
+    return res.status(500).json({ message: "Falha ao completar requisição" });
   }
 };

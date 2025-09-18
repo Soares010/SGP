@@ -14,6 +14,7 @@ import TabBody from "../../Components/TabBody";
 import { getOptions } from "../../utils/options";
 import { Modal } from "../../utils/modal";
 import { getTabs } from "../../utils/tabs";
+import { validate } from "../../utils/validate";
 import TabHeader from "../../Components/TabHeader";
 import Container from "../../Components/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -122,20 +123,7 @@ const Project = () => {
 
   async function addProject() {
     try {
-      const response = await api.post("/addProject", {
-        title: project.title,
-        category: project.category,
-        status: project.status,
-        description: project.description,
-        begin: project.begin,
-        end: project.end,
-        days: project.days,
-        budget: project.budget,
-        cost: project.cost,
-        priority: project.priority,
-        document: project.document,
-        observation: project.observation,
-      });
+      const response = await api.post("/addProject", project);
 
       if (response.status === 201) {
         await handleGetProjects();
@@ -150,19 +138,16 @@ const Project = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (
-      !project.title?.trim() ||
-      !project.description?.trim() ||
-      !project.status?.trim() ||
-      !project.begin?.trim() ||
-      !project.end?.trim() ||
-      !project.budget?.trim() ||
-      !project.cost?.trim() ||
-      !project.priority?.trim()
-    ) {
-      setError("Precisa preencher os campos obrigatórios!");
+    const errorMessageInputs = validate(
+      project,
+      "projects",
+      "Precisa preencher os campos obrigatórios!"
+    );
+    if (errorMessageInputs) {
+      setError(errorMessageInputs);
       return;
     }
+
     addProject();
   }
 
